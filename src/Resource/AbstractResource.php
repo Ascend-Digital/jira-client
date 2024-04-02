@@ -91,6 +91,10 @@ class AbstractResource
         $max = (isset($data['maxResults'])) ? $data['maxResults'] : 0;
         $total = (isset($data['total'])) ? $data['total'] : 0;
 
+        if ( ! isset($data[$key])) {
+            return new ResourcesList($start, $max, $total, array(), $client);
+        }
+
         $array = self::deserializeArrayValue($type, $data[$key], $client);
 
         return new ResourcesList($start, $max, $total, $array, $client);
