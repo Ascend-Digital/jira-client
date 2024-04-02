@@ -1,5 +1,5 @@
 {
-    "name": "rastor/jira-client",
+    "name": "ascend-digital/jira-client",
     "type": "library",
     "version": "0.4.5",
     "description": "A simple PHP JIRA REST client",

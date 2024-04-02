@@ -123,6 +123,12 @@ class Issue extends AbstractResource {
 
     /**
      *
+     * @var integer
+     */
+    protected $timespent;
+
+    /**
+     *
      * @var \DateTime
      */
     protected $dueDate;
@@ -372,6 +378,14 @@ class Issue extends AbstractResource {
         return $this->timeoriginalestimate;
     }
 
+    /**
+     *
+     * @return integer
+     */
+    public function getTimeSpent() {
+        return $this->timespent;
+    }
+
     public function getObjectMappings() {
         return array(
             'id' => array(
@@ -457,6 +471,9 @@ class Issue extends AbstractResource {
                     '_type' => 'date'
                 ),
                 'timeoriginalestimate' => array(
+                    '_type' => 'integer'
+                ),
+                'timespent' => array(
                     '_type' => 'integer'
                 )
             )
