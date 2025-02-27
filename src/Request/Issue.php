@@ -451,7 +451,7 @@ class Issue extends AbstractRequest
 
         $path = "/issue/{$issue}?" . http_build_query($params);
 
-        $result = $this->client->callGet($path)->getData();
+        $result = $this->client->callGet($path, null)->getData();
 
         return new \JiraClient\Resource\Issue($this->client, $result);
     }
