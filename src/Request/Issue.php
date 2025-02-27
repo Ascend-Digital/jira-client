@@ -410,7 +410,7 @@ class Issue extends AbstractRequest
         $path = "/issue/createmeta?" . http_build_query($queryParams);
 
         try {
-            return $this->client->callGet($path)->getData();
+            return $this->client->callGet($path, null)->getData();
         } catch (Exception $e) {
             throw new JiraException("Failed to retrieve create metadata", $e);
         }
