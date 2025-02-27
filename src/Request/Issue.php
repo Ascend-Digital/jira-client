@@ -102,7 +102,7 @@ class Issue extends AbstractRequest
         $path = "/issue/{$issue}/comment" . ($expand ? '?expand' : '');
 
         try {
-            $result = $this->client->callGet($path);
+            $result = $this->client->callGet($path, null);
 
             return AbstractResource::deserializeListValue('comment', 'comments', $result->getData(), $this->client);
         } catch (Exception $e) {
@@ -124,7 +124,7 @@ class Issue extends AbstractRequest
         $path = "/issue/{$issue}/comment/{$commentId}" . ($expand ? '?expand' : '');
 
         try {
-            $result = $this->client->callGet($path);
+            $result = $this->client->callGet($path, null);
 
             return new Comment($this->client, $result->getData());
         } catch (Exception $e) {
@@ -233,7 +233,7 @@ class Issue extends AbstractRequest
         $path = "/issue/{$issue}/editmeta";
 
         try {
-            $data = $this->client->callGet($path)->getData();
+            $data = $this->client->callGet($path, null)->getData();
 
             if (!isset($data['fields'])) {
                 throw new JiraException("Bad metadata");
@@ -299,7 +299,7 @@ class Issue extends AbstractRequest
         $path = "/issue/{$issue}/worklog";
 
         try {
-            $data = $this->client->callGet($path)->getData();
+            $data = $this->client->callGet($path, null)->getData();
             return AbstractResource::deserializeListValue('worklog', 'worklogs', $data, $this->client);
 
         } catch (\Exception $e) {
@@ -312,7 +312,7 @@ class Issue extends AbstractRequest
         $path = "/issue/{$issue}/worklog/{$worklogId}";
 
         try {
-            return new Worklog($this->client, $this->client->callGet($path)->getData());
+            return new Worklog($this->client, $this->client->callGet($path, null)->getData());
         } catch (\Exception $e) {
             throw new JiraException("Failed to retrieve worklog '{$worklogId} for issue {$issue}'", $e);
         }
@@ -500,7 +500,7 @@ class Issue extends AbstractRequest
 
         $path = "/issue/{$issue}/transitions?" . http_build_query($params);
 
-        $response = $this->client->callGet($path);
+        $response = $this->client->callGet($path, null);
 
         $result = $response->getData();
 
