@@ -79,7 +79,7 @@ class SearchIterator implements \Iterator {
 
         $path = "/search?" . http_build_query($params);
 
-        return $this->client->callGet($path)->getData();
+        return $this->client->callGet($path, null)->getData();
     }
 
     private function fetchData() {
